@@ -1,12 +1,16 @@
 package ru.job4j.todo;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 public class Item {
     private String name;
+    private Calendar created;
+    private boolean done;
 
-    public Item(String name) {
+    public Item(String name, Calendar created) {
         this.name = name;
+        this.created = created;
     }
 
     public String getName() {
@@ -15,6 +19,22 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Calendar getCreated() {
+        return created;
+    }
+
+    public void setCreated(Calendar created) {
+        this.created = created;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 
     @Override
