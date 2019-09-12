@@ -7,6 +7,7 @@ public class Item {
     private String name;
     private Calendar created;
     private boolean done;
+    private String desc;
 
     public Item(String name, Calendar created) {
         this.name = name;
@@ -35,6 +36,14 @@ public class Item {
 
     public void setDone(boolean done) {
         this.done = done;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     @Override
