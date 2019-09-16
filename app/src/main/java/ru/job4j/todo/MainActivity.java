@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-    private final RecyclerView.Adapter adapter = new ItemAdapter();
+    private final RecyclerView.Adapter adapter = new ItemAdapter(this);
 
     @Override
     protected void onCreate(Bundle saved) {

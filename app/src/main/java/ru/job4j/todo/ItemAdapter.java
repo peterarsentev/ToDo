@@ -13,6 +13,11 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public final class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private Context context;
+
+    public ItemAdapter(Context context) {
+        this.context = context;
+    }
 
     @NonNull
     @Override
@@ -25,14 +30,14 @@ public final class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int index) {
-        TextView name = holder.itemView.findViewById(R.id.name);
-        name.setOnClickListener(
+        holder.itemView.setOnClickListener(
                 view -> {
-                    Intent intent = new Intent(name.getContext(), ItemActivity.class);
+                    Intent intent = new Intent(context, ItemActivity.class);
                     intent.putExtra("index", index);
-                    name.getContext().startActivity(intent);
+                    context.startActivity(intent);
                 }
         );
+        TextView name = holder.itemView.findViewById(R.id.name);
         TextView created = holder.itemView.findViewById(R.id.created);
         Item item = Store.getStore().get(index);
         name.setText(String.format("%s. %s", index, item.getName()));
@@ -52,4 +57,6 @@ public final class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public int getItemCount() {
         return Store.getStore().size();
     }
+
+
 }
