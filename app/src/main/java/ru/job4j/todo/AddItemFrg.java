@@ -29,7 +29,7 @@ public class AddItemFrg extends Fragment {
         EditText desc = view.findViewById(R.id.desc);
         Item item = new Item(edit.getText().toString(), Calendar.getInstance());
         item.setDesc(desc.getText().toString());
-        Store.getStore().add(item);
+        MemStore.getStore().add(item);
         Intent intent = new Intent(getActivity(), ItemsActivity.class);
         startActivity(intent);
     }
