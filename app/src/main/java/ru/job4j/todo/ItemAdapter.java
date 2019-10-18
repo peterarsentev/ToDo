@@ -1,6 +1,5 @@
 package ru.job4j.todo;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,12 +8,16 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import java.util.Calendar;
-import java.util.Locale;
-
 import static ru.job4j.todo.DateFrm.format;
 
 public final class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    private final ItemsFrg.Callbacks call;
+
+    public ItemAdapter(ItemsFrg.Callbacks call) {
+        this.call = call;
+    }
+
 
     @NonNull
     @Override
@@ -27,16 +30,12 @@ public final class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int index) {
+        Item item = Store.getStore().get(index);
         TextView name = holder.itemView.findViewById(R.id.name);
         holder.itemView.setOnClickListener(
-                view -> {
-                    Intent intent = new Intent(name.getContext(), ViewItemActivity.class);
-                    intent.putExtra("index", index);
-                    name.getContext().startActivity(intent);
-                }
+                view -> call.onItemSelected(index)
         );
         TextView created = holder.itemView.findViewById(R.id.created);
-        Item item = Store.getStore().get(index);
         name.setText(String.format("%s. %s", index, item.getName()));
         created.setText(format(item.getCreated()));
         CheckBox done = holder.itemView.findViewById(R.id.done);
