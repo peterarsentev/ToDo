@@ -28,9 +28,9 @@ public class AddItemFrg extends Fragment {
     public void save(View view) {
         EditText edit = view.findViewById(R.id.name);
         EditText desc = view.findViewById(R.id.desc);
-        Item item = new Item(edit.getText().toString(), Calendar.getInstance());
+        Item item = new Item(edit.getText().toString(), Calendar.getInstance(), false, "");
         item.setDesc(desc.getText().toString());
-        Store.getStore().add(item);
+        Store.INSTANCE.add(item);
         Intent intent = new Intent(getActivity(), ItemsActivity.class);
         startActivity(intent);
     }
