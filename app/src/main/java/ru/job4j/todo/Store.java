@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class Store {
+public class Store implements IStore {
     private static final Store INST = new Store();
 
     private final List<Item> items = new ArrayList<>();

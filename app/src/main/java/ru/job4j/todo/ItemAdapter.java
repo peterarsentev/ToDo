@@ -1,5 +1,6 @@
 package ru.job4j.todo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -14,10 +15,12 @@ public final class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     private final ItemsFrg.Callbacks call;
 
-    public ItemAdapter(ItemsFrg.Callbacks call) {
-        this.call = call;
-    }
+    private Context context;
 
+    public ItemAdapter(ItemsFrg.Callbacks call, Context ctx) {
+        this.call = call;
+        context = ctx;
+    }
 
     @NonNull
     @Override
@@ -30,7 +33,7 @@ public final class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int index) {
-        Item item = Store.getStore().get(index);
+        Item item = MemStore.getInstance(context).get(index);
         TextView name = holder.itemView.findViewById(R.id.name);
         holder.itemView.setOnClickListener(
                 view -> call.onItemSelected(index)
@@ -46,6 +49,6 @@ public final class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public int getItemCount() {
-        return Store.getStore().size();
+        return MemStore.getInstance(context).size();
     }
 }
