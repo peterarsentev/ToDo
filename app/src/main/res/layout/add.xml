@@ -24,6 +24,14 @@
         android:hint="Описание"
         android:inputType="textMultiLine" />
 
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:cropToPadding="true"
+        android:scaleType="centerInside"
+        android:src="@android:drawable/ic_menu_report_image" />
+
     <Button
         android:id="@+id/date"
         android:layout_width="match_parent"

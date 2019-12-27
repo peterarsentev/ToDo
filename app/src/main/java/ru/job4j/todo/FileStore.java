@@ -10,19 +10,19 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Calendar;
 
-public class MemStore implements IStore {
+public class FileStore implements IStore {
 
     private static IStore instance;
     private int counter = 0;
     private Context context;
 
-    private MemStore(Context context) {
+    private FileStore(Context context) {
        this.context = context;
     }
 
     public static IStore getInstance(Context context) {
         if (instance == null) {
-            instance = new MemStore(context);
+            instance = new FileStore(context);
         }
         return instance;
     }

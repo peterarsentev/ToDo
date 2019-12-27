@@ -25,7 +25,7 @@ public class ViewItemFrg extends Fragment {
         View view = inflater.inflate(R.layout.item, container, false);
 //        int index = getActivity().getIntent().getIntExtra("index", 0);
         int index = getArguments().getInt("index", 0);
-        Item item = MemStore.getInstance(this.getContext()).get(index);
+        Item item = FileStore.getInstance(this.getContext()).get(index);
         TextView name = view.findViewById(R.id.name);
         name.setText(item.getName());
         TextView desc = view.findViewById(R.id.desc);
